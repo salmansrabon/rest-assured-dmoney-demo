@@ -1,4 +1,4 @@
-# rest-assured-dmoney-demo
+# Rest-Assured-Dmoney-Demo
 
 ## Calling Login API
 ## User list get
