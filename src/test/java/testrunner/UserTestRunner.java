@@ -20,6 +20,6 @@ public class UserTestRunner {
         User user=new User();
         String id= user.callingUserListAPI();
         System.out.println(id);
-        Assert.assertEquals(id,String.valueOf(58));
+        Assert.assertEquals(id,String.valueOf(81));
     }
 }
