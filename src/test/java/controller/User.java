@@ -59,4 +59,23 @@ public class User extends Setup {
         JsonPath response = res.jsonPath();
         return response.get("users[0].id").toString();
     }
+    public String createNewUser(String name, String email, String password, String phone_number, String nid, String role) throws ConfigurationException, IOException {
+        RestAssured.baseURI = prop.getProperty("BASE_URL");
+        UserModel userModel = new UserModel(name, email, password, phone_number, nid, role);
+        Response res =
+                given()
+                        .contentType("application/json")
+                        .header("Authorization",prop.getProperty("TOKEN"))
+                        .header("X-AUTH-SECRET-KEY","ROADTOSDET")
+                        .body(userModel)
+                        .when()
+                        .post("/user/create")
+                        .then()
+                        .assertThat().statusCode(201).extract().response();
+
+        JsonPath jsonpath = res.jsonPath();
+        String message=jsonpath.get("message");
+        System.out.println(res.asString());
+        return message;
+    }
 }
