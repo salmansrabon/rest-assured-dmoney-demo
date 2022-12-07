@@ -43,6 +43,7 @@ public class UserTestRunner {
     public void d_searchByUserId() throws IOException {
         User user=new User();
         String id=user.searchByUserId("83");
+        System.out.println(id);
         Assert.assertEquals(id,"83");
     }
 }
