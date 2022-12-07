@@ -78,4 +78,20 @@ public class User extends Setup {
         System.out.println(res.asString());
         return message;
     }
+    public String searchByUserId(String id){
+        RestAssured.baseURI = prop.getProperty("BASE_URL");
+        Response res =
+                given()
+                        .contentType("application/json")
+                        .header("Authorization", prop.getProperty("TOKEN"))
+                        .header("X-AUTH-SECRET-KEY","ROADTOSDET")
+                        .when()
+                        .get("/user/search?id="+id)
+                        .then()
+                        .assertThat().statusCode(200).extract().response();
+
+        JsonPath response = res.jsonPath();
+        System.out.println(res.asString());
+        return response.get("user.id").toString();
+    }
 }
